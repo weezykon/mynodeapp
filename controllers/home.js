@@ -8,6 +8,12 @@ exports.submit_lead = function(req, res, next) {
     return models.Lead.create({
         email: req.body.lead_email
     }).then( lead => {
-        res.redirect('/');
+        res.redirect('/emails');
+    })
+};
+
+exports.fetch_emails = function(req, res, next) {
+    return models.Lead.findAll().then( leads => {
+        res.render('index', { title: 'Express', leads: leads });
     })
 };
