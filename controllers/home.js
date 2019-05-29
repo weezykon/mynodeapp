@@ -17,3 +17,34 @@ exports.fetch_emails = function(req, res, next) {
         res.render('index', { title: 'Express', leads: leads });
     })
 };
+
+exports.show_email = function(req, res, next) {
+    return models.Lead.findOne({
+        where : {
+            id : req.params.lead_id
+        }
+    }).then( lead => {
+        res.render('email', { lead: lead });
+    })
+};
+
+exports.update_email = function(req, res, next) {
+    return models.Lead.update({
+        email: req.body.lead_email
+    },{ where : {
+            id : req.params.lead_id
+        }
+    }).then( lead => {
+        res.redirect('/emails');
+    })
+};
+
+exports.delete_email = function(req, res, next){
+    return models.Lead.destroy({
+        where : {
+            id : req.params.lead_id
+        }
+    }).then(lead => {
+        res.redirect('/emails');
+    })
+}
