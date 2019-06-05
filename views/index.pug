@@ -1,17 +1,21 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
-  form(action="/", method="POST")
-    input(name="lead_email", type="email", placeholder="Enter your email address")
-    button(type="submit") Submit
-  if leads
-    h1 Emails
-    for lead in leads
-      p 
-        span #{lead.email}
-        | 
-        a(href='/email/' + lead.id) Edit
-        | 
-        a(href='/delete/' + lead.id) Delete
+doctype html
+html(lang='en')
+  include common/head.pug
+  +head('Node')
+  body.container
+    h1= title
+    p Welcome to #{title}
+    form(action="/", method="POST")
+      input(name="lead_email", type="email", placeholder="Enter your email address")
+      button(type="submit") Submit
+    if leads
+      h1 Emails
+      for lead in leads
+        p 
+          span #{lead.email}
+          | 
+          a(href='/email/' + lead.id) Edit
+          | 
+          a(href='/delete/' + lead.id) Delete
+  include common/footer.pug
+  +footer()
