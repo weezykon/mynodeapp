@@ -2,11 +2,15 @@ doctype html
 html(lang='en')
   include common/head.pug
   +head('Node')
-  body.container
-    p #{lead.email}
-    p Edit Email
-        form(action="/email/" + lead.id, method="POST")
-            input(name="lead_email", type="email", placeholder="Enter your email address", value=lead.email)
-            button(type="submit") Save
+  body
+    header
+      include common/navbar.pug
+      +navbar(user)
+      .container
+        p #{lead.email}
+        p Edit Email
+            form(action="/email/" + lead.id, method="POST")
+                input(name="lead_email", type="email", placeholder="Enter your email address", value=lead.email)
+                button(type="submit") Save
   include common/footer.pug
   +footer()

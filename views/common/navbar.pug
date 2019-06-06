@@ -1,0 +1,18 @@
+mixin navbar(user)
+    nav.navbar.navbar-expand.navbar-light.bg-light
+        a(href='/').navbar-brand Home
+        .collapse.navbar-collapse
+            ul.navbar-nav.mr-auto
+                li.nav-item
+                    a.nav-link(href='/emails') Emails
+                if user
+                    li.nav-item
+                        span.navbar-text Hello #{user.username}
+                if !user
+                    li.nav-item
+                        a.nav-link(href='/login') Sign In
+                    li.nav-item
+                        a.nav-link(href='/signup') Sign Up	
+                if user
+                    li.nav-item
+                    a.nav-link(href='/logout') Logout	
