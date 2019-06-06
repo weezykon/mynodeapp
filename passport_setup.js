@@ -1,7 +1,7 @@
 let LocalStrategy = require('passport-local').Strategy;
 
 let bcrypt = require('bcrypt');
-let models = ('./models');
+let models = require('./models');
 
 const validPassword = function(user, password){
     return bcrypt.compareSync(password, user.password);
@@ -30,16 +30,8 @@ module.exports = function(passport){
     function(req, email, password, done){
         return models.User.findOne({
             where: {
-                'email': email,
-                $or: [
-                    {
-                        'username': 
-                        {
-                            $eq: email
-                        }
-                    },
-                ]
-            }
+                'email': email
+            },
         }).then(user => {
             if(user == null){
                 req.flash('message', "User doesn't exist");
