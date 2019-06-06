@@ -1,6 +1,6 @@
 const models = require('../models');
 exports.home = function(req, res, next) {
-    res.render('index', { title: 'Express' });
+    res.render('index', { title: 'Express', user: req.user });
 };
 
 exports.submit_lead = function(req, res, next) {
@@ -14,7 +14,7 @@ exports.submit_lead = function(req, res, next) {
 
 exports.fetch_emails = function(req, res, next) {
     return models.Lead.findAll().then( leads => {
-        res.render('index', { title: 'Express', leads: leads });
+        res.render('index', { title: 'Express', leads: leads, user: req.user  });
     })
 };
 
@@ -24,7 +24,7 @@ exports.show_email = function(req, res, next) {
             id : req.params.lead_id
         }
     }).then( lead => {
-        res.render('email', { lead: lead });
+        res.render('email', { lead: lead , user: req.user });
     })
 };
 

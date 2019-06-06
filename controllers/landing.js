@@ -1,3 +1,3 @@
 exports.get_landing = function(req, res, next) {
-    res.render('landing', { title: 'Landing Page' });
+    res.render('landing', { title: 'Landing Page' , user: req.user });
 };
