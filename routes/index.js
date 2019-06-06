@@ -8,6 +8,8 @@ router.get('/login', user.show_login);
 router.post('/login', user.login);
 router.get('/signup', user.show_signup);
 router.post('/signup', user.signup);
+router.get('/logout', user.logout);
+router.post('/logout', user.logout);
 /* GET home page. */
 router.get('/', home.home);
 router.post('/', home.submit_lead);
