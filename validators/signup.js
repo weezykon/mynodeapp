@@ -1,5 +1,7 @@
 let validator = require('validator');
 let models = require('../models');
+var Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 const validateCreateUserFields = function (errors, req){
     if(!validator.isEmail(req.body.email)){
@@ -20,9 +22,12 @@ exports.validateUser = function(errors, req){
             where: {
                 email: req.body.email
             }
+            // where: {
+            //     [Op.or]: [{email: req.body.email}, {username: req.body.username}]
+            // }
         }).then(u => {
-            if(u == null){
-                errors['email'] = 'Email is already in use';
+            if(u !== null){
+                errors['email'] = 'User already exist';
             }
             resolve(errors);
         })
